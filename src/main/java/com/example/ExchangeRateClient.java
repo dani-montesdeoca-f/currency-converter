@@ -1,6 +1,7 @@
 package com.example;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 
 import java.io.IOException;
 import java.net.URI;
@@ -22,7 +23,7 @@ public class ExchangeRateClient {
         }
     }
 
-    // Build the URL
+    // Build the API URL
     private static final String BASE_URL =
             "https://v6.exchangerate-api.com/v6/" + API_KEY + "/latest";
 
@@ -30,7 +31,7 @@ public class ExchangeRateClient {
     private final HttpClient httpClient;
     private final Gson gson;
 
-    // constructor
+    // ExchangeRate object constructor
     public ExchangeRateClient() {
         this.httpClient = HttpClient.newBuilder()
                 .version(HttpClient.Version.HTTP_2)
@@ -62,8 +63,8 @@ public class ExchangeRateClient {
             throw new IOException("HTTP " + resp.statusCode() + ": " + resp.body());
         }
 
-        // check for an “error” field before parsing
-        var jsonTree = gson.fromJson(resp.body(), com.google.gson.JsonObject.class);
+        // check for errors before parsing
+        JsonObject jsonTree = gson.fromJson(resp.body(), JsonObject.class);
         if (jsonTree.has("error")) {
             throw new IOException("API error: " + jsonTree.get("error").getAsJsonObject());
         }

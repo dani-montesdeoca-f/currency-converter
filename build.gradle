@@ -1,0 +1,25 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+group = 'com.example'
+version = '1.0-SNAPSHOT'
+sourceCompatibility = '11'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'io.javalin:javalin:5.6.2'
+    // Simple logger so Javalin can log to the console:
+    implementation 'org.slf4j:slf4j-simple:2.0.9'
+    implementation 'com.google.code.gson:gson:2.10.1'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.15.0'
+}
+
+// tells Gradle which class has your main() for `gradle run`
+application {
+    mainClass = 'com.example.WebApp'
+}
