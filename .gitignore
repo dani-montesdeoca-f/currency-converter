@@ -1,7 +1,14 @@
+# Gradle build files
+/.gradle/
+/build/
+/out/
+
 ### IntelliJ IDEA ###
 out/
 !**/src/main/**/out/
 !**/src/test/**/out/
+/.idea/
+/*.iml
 
 ### Eclipse ###
 .apt_generated
@@ -27,3 +34,4 @@ bin/
 
 ### Mac OS ###
 .DS_Store
+Thumbs.db
